@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="UniVerse.Learn.VerseLearningPage"
+             BackgroundColor="{DynamicResource textBackground}"
+             Title="Изучение">
+    <ContentPage.Content>
+        <StackLayout>
+            <ScrollView>
+                <StackLayout>
+                    <Label x:Name="verseLabel" VerticalOptions="StartAndExpand" 
+                           HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" 
+                           FontSize="Medium"/>
+                </StackLayout>
+            </ScrollView>
+            <StackLayout x:Name="switchLayout" Orientation="Horizontal" VerticalOptions="EndAndExpand">
+                <Label Text="Закрыть всё" HorizontalOptions="StartAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="5" FontSize="Medium"/>
+                <Switch x:Name="closeSwitch" HorizontalOptions="StartAndExpand" IsToggled="False" Toggled="closeSwitchToggled"/>
+                <Button x:Name="closeButton" HorizontalOptions="EndAndExpand" Clicked="closeButtonClicked"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

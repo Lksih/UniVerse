@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="UniVerse.SettingsPage"
+             BackgroundColor="{DynamicResource startBackground}"
+             Title="Настройки">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout x:Name="DarkModeStack" Orientation="Horizontal" VerticalOptions="Start" HorizontalOptions="Fill">
+                <Label Text="Тёмная тема" HorizontalOptions="StartAndExpand" TextColor="{DynamicResource textColor}"
+                       VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="Medium"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" VerticalOptions="Start" HorizontalOptions="Fill">
+                <Label x:Name="ComplicityLabel" Text="Сложность: " HorizontalOptions="StartAndExpand" FontSize="Medium" 
+                       TextColor="{DynamicResource textColor}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                <Picker x:Name="ComplicityPicker" Title="Выберите сложность" HorizontalOptions="EndAndExpand" TextColor="{DynamicResource textColor}"
+                        SelectedIndexChanged="ComplicitySelected" VerticalTextAlignment="Center" HorizontalTextAlignment="End">
+                    <Picker.Items>
+                        <x:String>Просто</x:String>
+                        <x:String>Средне</x:String>
+                        <x:String>Сложно</x:String>
+                    </Picker.Items>
+                </Picker>
+            </StackLayout>
+            <Label x:Name="Developers" TextColor="{DynamicResource textColor}" HorizontalTextAlignment="Center" 
+                   VerticalOptions="EndAndExpand" HorizontalOptions="Center"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

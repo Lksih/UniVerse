@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="UniVerse.Test.TestPage"
+             BackgroundColor="{DynamicResource textBackground}"
+             Title="Тест">
+    <ContentPage.Content>
+        <StackLayout>
+            <ScrollView>
+                <Label x:Name="verseLabel"
+                       VerticalOptions="StartAndExpand" 
+                       HorizontalOptions="CenterAndExpand"
+                       HorizontalTextAlignment="Center"
+                       FontSize="Medium"/>
+            </ScrollView>
+            <StackLayout x:Name="buttonsLayout" VerticalOptions="EndAndExpand"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

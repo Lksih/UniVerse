@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="UniVerse.AddingNew"
+             BackgroundColor="{DynamicResource startBackground}"
+             Title="Добавление стиха">
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry x:Name="name" Placeholder="Название" HorizontalOptions="Fill" VerticalOptions="Start" BackgroundColor="{DynamicResource textBackground}"/>
+            <Entry x:Name="author" Placeholder="Автор" HorizontalOptions="Fill" VerticalOptions="Start" BackgroundColor="{DynamicResource textBackground}"/>
+            <Entry x:Name="tags" Placeholder="Тэги через запятую" HorizontalOptions="Fill" VerticalOptions="Start" BackgroundColor="{DynamicResource textBackground}"/>
+            <Editor x:Name="text" Placeholder="Текст стиха" BackgroundColor="{DynamicResource textBackground}"
+                    HorizontalOptions="Fill" VerticalOptions="FillAndExpand"/>
+            <Button x:Name="addButton" Text="ДОБАВИТЬ" Clicked="AddVerse" HorizontalOptions="Center" VerticalOptions="End"
+                    TextColor="Wheat" BackgroundColor="Black"
+                    BorderColor="Wheat" BorderWidth="2"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

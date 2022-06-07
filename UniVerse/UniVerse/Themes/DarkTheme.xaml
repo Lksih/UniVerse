@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    x:Class="UniVerse.Themes.DarkTheme">
+    <Color x:Key="theme">#2F4F4F</Color>
+    <Color x:Key="startBackground">#000000</Color>
+    <Color x:Key="textBackground">#5CE5CD</Color>
+    <Color x:Key="textColor">#FFFFFF</Color>
+    <Style TargetType="NavigationPage" ApplyToDerivedTypes="True">
+        <Setter Property="BarBackgroundColor" Value="{DynamicResource theme}"/>
+        <Setter Property="BarTextColor" Value="{DynamicResource textColor}"/>
+    </Style>
+    <Style TargetType="TabbedPage" ApplyToDerivedTypes="True">
+        <Setter Property="BarBackgroundColor" Value="{DynamicResource theme}"/>
+        <Setter Property="BarTextColor" Value="{DynamicResource textColor}"/>
+    </Style>
+</ResourceDictionary>

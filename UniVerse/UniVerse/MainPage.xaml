@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="UniVerse.MainPage"
+             BackgroundColor="{DynamicResource startBackground}"
+             Title="UniVerse">
+    
+    <StackLayout Padding="5">
+        <StackLayout Orientation="Horizontal">
+            <Button x:Name="startButton" Text="Начать учить" Clicked="StartClicked"
+                    HorizontalOptions="StartAndExpand" VerticalOptions="Center"/>
+            <Button x:Name="addNew" Text="Добавить" Clicked="AddClicked"
+                    HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+            <Button x:Name="settings" Text="Настройки" Clicked="SettingsClicked"
+                    HorizontalOptions="EndAndExpand" VerticalOptions="Center"/>
+        </StackLayout>
+        <Label Text="Избранное:" HorizontalOptions="Center" TextColor="{DynamicResource textColor}" FontSize="Medium"/>
+        <ScrollView>
+            <StackLayout x:Name="favourites" Padding="20"/>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>
