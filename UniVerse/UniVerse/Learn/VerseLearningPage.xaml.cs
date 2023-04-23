@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,14 +17,17 @@ namespace UniVerse.Learn
         private string[][] Words;
         private string[] Strings;
         private string[] ClosedStrings;
-        private int Probability;
+        private double Probability;
         private Verse verse;
         private int CurrentString = 0;
+
         public VerseLearningPage(Verse verse)
         {
             InitializeComponent();
             this.verse = verse;
             verseLabel.Text = verse.Text;
+            Debug.WriteLine("init");
+            Debug.WriteLine(verse.Text);
             closeButton.Text = "Закрыть 1 строку";
             Words = TextSplitter.GetWordsArray(verse.Text);
             Strings = TextSplitter.SplitToStrings(verse.Text);
@@ -31,37 +35,26 @@ namespace UniVerse.Learn
             switch(Preferences.Get("Complicity", "Просто"))
             {
                 case "Просто":
-                    Probability = 20;
+                    Probability = 0.2;
                     break;
                 case "Средне":
-                    Probability = 40;
+                    Probability = 0.4;
                     break;
                 case "Сложно":
-                    Probability = 60;
+                    Probability = 0.6;
                     break;
             }
         }
 
         private string CloseString(string[] words)
         {
-            string res = "";
             Random random = new Random();
-            foreach(string word in words)
+            int[] words_to_change = Enumerable.Range(0, words.Length).OrderBy(t => random.Next()).Take((int)(words.Length * Probability + 0.5) > 0 ? (int)(words.Length * Probability + 0.5) : 1).ToArray();
+			foreach(int i in words_to_change)
             {
-                if (random.Next(1, 100) <= Probability)
-                {
-                    for (int i = 0; i < word.Length; i++)
-                    {
-                        res += '*';
-                    }
-                }
-                else
-                {
-                    res += word;
-                }
-                res += ' ';
+                words[i] = new string('*', words[i].Length);
             }
-            return res.Substring(0, res.Length - 1);
+            return String.Join(" ", words);
         }
 
         private void closeButtonClicked(object sender, EventArgs e)
@@ -95,11 +88,13 @@ namespace UniVerse.Learn
             closedText += Strings[Words.Length - 1];
             closeButton.Text = "Закрыть " + (CurrentString + 1) + " строку";
             verseLabel.Text = closedText;
-        }
+			Debug.WriteLine("butt");
+			Debug.WriteLine(verse.Text);
+		}
 
         private void closeSwitchToggled(object sender, EventArgs e)
         {
-            Switch closeSwitch = (Switch)sender;
+            Xamarin.Forms.Switch closeSwitch = (Xamarin.Forms.Switch)sender;
             if (closeSwitch.IsToggled)
             {
                 closeButton.IsEnabled = false;
@@ -120,6 +115,5 @@ namespace UniVerse.Learn
                 verseLabel.Text = verse.Text;
             }
         }
-
     }
 }

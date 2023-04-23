@@ -16,7 +16,6 @@ namespace UniVerse
         public SettingsPage()
         {
             InitializeComponent();
-            Developers.Text = "Создатели:\nВоробьев Илья\nГомаско Денис\nКотов Иван";
             switch (Preferences.Get("Complicity", "Просто"))
             {
                 case "Просто":

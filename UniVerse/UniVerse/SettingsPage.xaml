@@ -23,7 +23,7 @@
                 </Picker>
             </StackLayout>
             <Label x:Name="Developers" TextColor="{DynamicResource textColor}" HorizontalTextAlignment="Center" 
-                   VerticalOptions="EndAndExpand" HorizontalOptions="Center"/>
+                   VerticalOptions="EndAndExpand" HorizontalOptions="Center" Text = "Создатель: Воробьев Илья"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
