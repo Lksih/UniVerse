@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,8 +25,6 @@ namespace UniVerse.Learn
             InitializeComponent();
             this.verse = verse;
             verseLabel.Text = verse.Text;
-            Debug.WriteLine("init");
-            Debug.WriteLine(verse.Text);
             closeButton.Text = "Закрыть 1 строку";
             Words = TextSplitter.GetWordsArray(verse.Text);
             Strings = TextSplitter.SplitToStrings(verse.Text);
@@ -88,13 +85,11 @@ namespace UniVerse.Learn
             closedText += Strings[Words.Length - 1];
             closeButton.Text = "Закрыть " + (CurrentString + 1) + " строку";
             verseLabel.Text = closedText;
-			Debug.WriteLine("butt");
-			Debug.WriteLine(verse.Text);
 		}
 
         private void closeSwitchToggled(object sender, EventArgs e)
         {
-            Xamarin.Forms.Switch closeSwitch = (Xamarin.Forms.Switch)sender;
+            Switch closeSwitch = (Switch)sender;
             if (closeSwitch.IsToggled)
             {
                 closeButton.IsEnabled = false;
