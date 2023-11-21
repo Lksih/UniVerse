@@ -33,8 +33,8 @@ namespace UniVerse.Test
             {
                 Button button = new Button
                 {
-                    Text = word
-                };
+                    Text = word//System.Text.RegularExpressions.Regex.Replace(word, @"\W+", " ")
+				};
                 button.Clicked += buttonClicked;
                 buttonsLayout.Children.Insert(random.Next(0, buttonsLayout.Children.Count), button);
             }
@@ -52,7 +52,9 @@ namespace UniVerse.Test
         {
             int TabInd = verseLabel.Text.LastIndexOf('\n');
             string input = verseLabel.Text.Substring(TabInd + 1);
-            if (input == Strings[CurrentString] + " ")
+			//if (input == System.Text.RegularExpressions.Regex.Replace(Strings[CurrentString], @"\s+", " ") + " ")
+			//System.Text.RegularExpressions.Regex.Replace(Strings[CurrentString], @"\W+", " ")
+			if (input == Strings[CurrentString] + " ")
             {
                 verseLabel.Text += "\n";
                 buttonsLayout.Children.Clear();

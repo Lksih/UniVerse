@@ -25,15 +25,18 @@ namespace UniVerse
                 string no_spaces;
                 try
                 {
-                    no_spaces = tags.Text.Replace("  ", " ");
-                    no_spaces = no_spaces.Replace(", ", ",");
+                    no_spaces = tags.Text.Replace("\n", "");
                 }
                 catch (Exception)
                 {
                     no_spaces = "";
                 }
                 string[] tagsList = no_spaces.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                App.Database.AddVerse(name.Text[name.Text.Length - 1] != '\n' ? name.Text : name.Text.Substring(0, name.Text.Length - 1), text.Text, author.Text, tagsList);
+                for (int i = 0; i < tagsList.Length; i++)
+                {
+                    tagsList[i] = tagsList[i].Trim();
+                }
+                App.Database.AddVerse(name.Text.Trim().Replace("\n", ""), text.Text, author.Text.Trim().Replace("\n", ""), tagsList);
                 DependencyService.Get<IMessages>().VerseAddedMessage();
                 await Navigation.PopAsync();
             }

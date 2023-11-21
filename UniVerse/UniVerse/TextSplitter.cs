@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace UniVerse
@@ -13,7 +14,7 @@ namespace UniVerse
 
         internal static string[] SplitStringToWords(string text)
         {
-            return text.Split(new char[] { ' ' });
+            return text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
         }
 
         internal static string[][] GetWordsArray(string text)

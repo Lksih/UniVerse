@@ -13,22 +13,19 @@ namespace UniVerse.Learn
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class VerseLearningPage : ContentPage
     {
-        private string[][] Words;
         private string[] Strings;
-        private string[] ClosedStrings;
         private double Probability;
         private Verse verse;
         private int CurrentString = 0;
+        private bool OnFinish = false;
 
         public VerseLearningPage(Verse verse)
         {
             InitializeComponent();
             this.verse = verse;
-            verseLabel.Text = verse.Text;
             closeButton.Text = "Закрыть 1 строку";
-            Words = TextSplitter.GetWordsArray(verse.Text);
             Strings = TextSplitter.SplitToStrings(verse.Text);
-            ClosedStrings = new string[Strings.Length];
+            verseLabel.Text = String.Join("\n", Strings);
             switch(Preferences.Get("Complicity", "Просто"))
             {
                 case "Просто":
@@ -47,7 +44,7 @@ namespace UniVerse.Learn
         {
             Random random = new Random();
             int[] words_to_change = Enumerable.Range(0, words.Length).OrderBy(t => random.Next()).Take((int)(words.Length * Probability + 0.5) > 0 ? (int)(words.Length * Probability + 0.5) : 1).ToArray();
-			foreach(int i in words_to_change)
+            foreach (int i in words_to_change)
             {
                 words[i] = new string('*', words[i].Length);
             }
@@ -60,31 +57,18 @@ namespace UniVerse.Learn
             {
                 CurrentString++;
             }
-            string closedText = "";
-            for (int i = 0; i < CurrentString; i++)
-            {
-                closedText += ClosedStrings[i] + "\n";
-            }
-            ClosedStrings[CurrentString] = CloseString(Words[CurrentString]);
+            Strings[CurrentString] = CloseString(TextSplitter.SplitStringToWords(Strings[CurrentString]));
             CurrentString++;
             if (CurrentString == Strings.Length)
             {
-                closedText += ClosedStrings[CurrentString - 1];
                 closeButton.IsEnabled = false;
-                verseLabel.Text = closedText;
+                OnFinish = true;
+                closeSwitch.IsToggled = true;
+                verseLabel.Text = String.Join("\n", Strings);
                 return;
             }
-            else
-            {
-                closedText += ClosedStrings[CurrentString - 1] + "\n";
-            }
-            for (int i = CurrentString; i < Strings.Length - 1; i++)
-            {
-                closedText += Strings[i] + "\n";
-            }
-            closedText += Strings[Words.Length - 1];
             closeButton.Text = "Закрыть " + (CurrentString + 1) + " строку";
-            verseLabel.Text = closedText;
+			verseLabel.Text = String.Join("\n", Strings);
 		}
 
         private void closeSwitchToggled(object sender, EventArgs e)
@@ -92,22 +76,25 @@ namespace UniVerse.Learn
             Switch closeSwitch = (Switch)sender;
             if (closeSwitch.IsToggled)
             {
-                closeButton.IsEnabled = false;
-                string closedText = "";
-                Random random = new Random();
-                for (int i = 0; i < Words.Length - 1; i++)
+                if (!OnFinish)
                 {
-                    closedText += CloseString(Words[i]) + "\n";
+                    closeButton.IsEnabled = false;
+                    Random random = new Random();
+                    for (int i = CurrentString; i < Strings.Length; i++)
+                    {
+                        Strings[i] = CloseString(TextSplitter.SplitStringToWords(Strings[i]));
+                    }
+                    verseLabel.Text = String.Join("\n", Strings);
                 }
-                closedText += CloseString(Words[Words.Length - 1]);
-                verseLabel.Text = closedText;
             }
             else
             {
+                OnFinish = false;
                 CurrentString = 0;
                 closeButton.Text = "Закрыть 1 строку";
                 closeButton.IsEnabled = true;
-                verseLabel.Text = verse.Text;
+                Strings = TextSplitter.SplitToStrings(verse.Text);
+                verseLabel.Text = String.Join("\n", Strings);
             }
         }
     }
