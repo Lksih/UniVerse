@@ -52,10 +52,7 @@ namespace UniVerse.Test
         {
             int TabInd = verseLabel.Text.LastIndexOf('\n');
             string input = verseLabel.Text.Substring(TabInd + 1);
-            string a = System.Text.RegularExpressions.Regex.Replace(System.Text.RegularExpressions.Regex.Replace(Strings[CurrentString], @"\W+", " "), @"\s+", " ") + " ", b= Strings[CurrentString];
-			if (input.Trim() == System.Text.RegularExpressions.Regex.Replace(System.Text.RegularExpressions.Regex.Replace(Strings[CurrentString], @"\W+", " "), @"\s+", " ").Trim())
-			//System.Text.RegularExpressions.Regex.Replace(Strings[CurrentString], @"\W+", " ")
-			//if (input == Strings[CurrentString] + " ")
+            if (input.Trim() == System.Text.RegularExpressions.Regex.Replace(System.Text.RegularExpressions.Regex.Replace(Strings[CurrentString], @"\W+", " "), @"\s+", " ").Trim())
             {
                 verseLabel.Text += "\n";
                 buttonsLayout.Children.Clear();
@@ -65,7 +62,7 @@ namespace UniVerse.Test
                     DependencyService.Get<IMessages>().TestDoneMessage();
                     return;
                 }
-                if (Strings[CurrentString] == "")
+                while (Strings[CurrentString] == "")
                 {
                     verseLabel.Text += "\n";
                     CurrentString++;

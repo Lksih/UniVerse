@@ -53,7 +53,7 @@ namespace UniVerse.Learn
 
         private void closeButtonClicked(object sender, EventArgs e)
         {
-            if (Strings[CurrentString].Length == 0)
+            while (Strings[CurrentString].Length == 0)
             {
                 CurrentString++;
             }
