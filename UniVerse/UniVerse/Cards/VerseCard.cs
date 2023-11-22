@@ -37,6 +37,7 @@ namespace UniVerse
             ImageButton like = new ImageButton
             {
                 HorizontalOptions = LayoutOptions.EndAndExpand,
+                VerticalOptions = LayoutOptions.Center,
                 Source = verse.Favourited == 1 ?
                 "LikePressed.png" :
                 "LikeNotPressed.png"
