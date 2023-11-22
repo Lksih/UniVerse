@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using UniVerse.Models;
 
 namespace UniVerse
 {
@@ -13,8 +14,8 @@ namespace UniVerse
         }
 
         internal static string[] SplitStringToWords(string text)
-        {
-            return text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+		{
+            return System.Text.RegularExpressions.Regex.Replace(text, @"\W+", " ").Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
         }
 
         internal static string[][] GetWordsArray(string text)

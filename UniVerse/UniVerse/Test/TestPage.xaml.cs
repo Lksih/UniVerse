@@ -33,7 +33,7 @@ namespace UniVerse.Test
             {
                 Button button = new Button
                 {
-                    Text = word//System.Text.RegularExpressions.Regex.Replace(word, @"\W+", " ")
+                    Text = word
 				};
                 button.Clicked += buttonClicked;
                 buttonsLayout.Children.Insert(random.Next(0, buttonsLayout.Children.Count), button);
@@ -52,9 +52,10 @@ namespace UniVerse.Test
         {
             int TabInd = verseLabel.Text.LastIndexOf('\n');
             string input = verseLabel.Text.Substring(TabInd + 1);
-			//if (input == System.Text.RegularExpressions.Regex.Replace(Strings[CurrentString], @"\s+", " ") + " ")
+            string a = System.Text.RegularExpressions.Regex.Replace(System.Text.RegularExpressions.Regex.Replace(Strings[CurrentString], @"\W+", " "), @"\s+", " ") + " ", b= Strings[CurrentString];
+			if (input.Trim() == System.Text.RegularExpressions.Regex.Replace(System.Text.RegularExpressions.Regex.Replace(Strings[CurrentString], @"\W+", " "), @"\s+", " ").Trim())
 			//System.Text.RegularExpressions.Regex.Replace(Strings[CurrentString], @"\W+", " ")
-			if (input == Strings[CurrentString] + " ")
+			//if (input == Strings[CurrentString] + " ")
             {
                 verseLabel.Text += "\n";
                 buttonsLayout.Children.Clear();
@@ -71,7 +72,7 @@ namespace UniVerse.Test
                 }
                 MakingButtons(CurrentString);
             }
-            else if (input.Length == Strings[CurrentString].Length + 1)
+            else if (input.Trim().Length == System.Text.RegularExpressions.Regex.Replace(System.Text.RegularExpressions.Regex.Replace(Strings[CurrentString], @"\W+", " "), @"\s+", " ").Trim().Length)
             {
                 verseLabel.Text = verseLabel.Text.Substring(0, TabInd + 1);
                 foreach (Button button in buttonsLayout.Children)
